@@ -9,7 +9,7 @@ import org.springframework.util.ObjectUtils;
 @Component
 public class WaterConnectionValidator {
 
-    public void validateWaterConnectionRequest(WaterConnectionRequest waterConnectionRequest) {
+    public WaterConnection validateWaterConnectionRequest(WaterConnectionRequest waterConnectionRequest) {
         if (waterConnectionRequest == null || waterConnectionRequest.getWaterConnection() == null) {
             throw new CustomException("WC_REQ_ERR", "WaterConnectionRequest or WaterConnection cannot be null");
         }
@@ -18,5 +18,6 @@ public class WaterConnectionValidator {
         if (ObjectUtils.isEmpty(waterConnection.getTenantId())) {
             throw new CustomException("WC_TENANT_ERR", "tenantId is mandatory for creating water connection applications");
         }
+        return waterConnection;
     }
 }
